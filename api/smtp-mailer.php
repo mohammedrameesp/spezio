@@ -31,7 +31,7 @@ class SMTPMailer {
         return $this->lastError;
     }
 
-    public function send($from, $fromName, $to, $subject, $body, $isHtml = false) {
+    public function send($from, $fromName, $to, $subject, $body, $isHtml = false, $replyTo = null) {
         try {
             // Connect to SMTP server
             $this->connect();
@@ -70,6 +70,11 @@ class SMTPMailer {
                 "Date: " . date("r"),
                 "Message-ID: <" . uniqid() . "@" . $this->host . ">"
             ];
+
+            // Add Reply-To header if provided
+            if ($replyTo && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
+                $headers[] = "Reply-To: {$replyTo}";
+            }
 
             $message = implode("\r\n", $headers) . "\r\n\r\n" . $body . "\r\n.";
             $this->sendCommand($message, 250);
@@ -141,13 +146,21 @@ class SMTPMailer {
 
 /**
  * Send email using configured SMTP
+ * @param string $to Recipient email
+ * @param string $subject Email subject
+ * @param string $body Email body
+ * @param bool $isHtml Whether body is HTML
+ * @param string|null $replyTo Reply-To email address
  */
-function sendEmail($to, $subject, $body, $isHtml = false) {
+function sendEmail($to, $subject, $body, $isHtml = false, $replyTo = null) {
     require_once __DIR__ . '/email-config.php';
 
     if (!SMTP_ENABLED || empty(SMTP_PASSWORD)) {
         // Fallback to PHP mail() if SMTP not configured
         $headers = "From: " . FROM_NAME . " <" . FROM_EMAIL . ">\r\n";
+        if ($replyTo && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
+            $headers .= "Reply-To: {$replyTo}\r\n";
+        }
         $headers .= "Content-Type: " . ($isHtml ? "text/html" : "text/plain") . "; charset=UTF-8\r\n";
         return @mail($to, $subject, $body, $headers);
     }
@@ -166,7 +179,8 @@ function sendEmail($to, $subject, $body, $isHtml = false) {
         $to,
         $subject,
         $body,
-        $isHtml
+        $isHtml,
+        $replyTo
     );
 
     if (!$result) {

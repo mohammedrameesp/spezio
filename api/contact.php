@@ -110,15 +110,26 @@ function sendEmailNotification($name, $phone, $email, $message, $id) {
 
     $subject = "New Contact Form Message - Spezio Apartments (#$id)";
 
-    $body = "New message from Spezio Apartments website:\n\n";
-    $body .= "Name: $name\n";
+    // Build email body
+    $body = "========================================\n";
+    $body .= "NEW CONTACT FORM SUBMISSION\n";
+    $body .= "========================================\n\n";
+    $body .= "From: $name\n";
     $body .= "Phone: $phone\n";
-    $body .= "Email: $email\n\n";
-    $body .= "Message:\n$message\n\n";
-    $body .= "---\n";
-    $body .= "Received: " . date('Y-m-d H:i:s') . "\n";
-    $body .= "IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown');
+    if ($email) {
+        $body .= "Email: $email\n";
+    }
+    $body .= "\n----------------------------------------\n";
+    $body .= "MESSAGE:\n";
+    $body .= "----------------------------------------\n";
+    $body .= "$message\n\n";
+    $body .= "========================================\n";
+    $body .= "Received: " . date('d M Y, h:i A') . "\n";
+    $body .= "Reference ID: #$id\n";
+    $body .= "========================================\n";
 
-    // Use SMTP mailer
-    return sendEmail(ADMIN_EMAIL, $subject, $body);
+    // Use customer email as Reply-To so you can reply directly
+    $replyTo = $email ?: null;
+
+    return sendEmail(ADMIN_EMAIL, $subject, $body, false, $replyTo);
 }
