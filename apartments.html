@@ -180,7 +180,10 @@
                     <img src="images/rooms/spezio-1bhk-apartment-preview.webp" alt="1BHK Furnished Apartment Spezio Perinthalmanna">
                 </div>
                 <div class="about-content">
-                    <h2 style="font-size: 1.75rem;">1BHK Apartment <span>| 650 sq.ft | King Bed</span></h2>
+                    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                        <h2 style="font-size: 1.75rem; margin: 0;">1BHK Apartment <span>| 650 sq.ft | King Bed</span></h2>
+                        <span class="room-badge">11 Units</span>
+                    </div>
                     <p style="font-size: 1.25rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem;">Starting ₹2300/night <span style="font-size: 0.9rem; font-weight: 400;">(up to 53% off on long stays)</span></p>
                     <p>Spacious fully furnished apartment with King-size bed, attached bathroom, living room, and full kitchen with stove, induction, fridge, kettle & cooking utensils. Cook your own meals, work from a proper desk, and relax in your private space.</p>
                     <p><strong>Perfect For:</strong> Business travelers, couples, solo visitors, hospital attendants, and anyone seeking a comfortable extended stay.</p>
@@ -251,7 +254,10 @@
                     <img src="images/rooms/spezio-2bhk-apartment-preview.webp" alt="2BHK Family Apartment Spezio Perinthalmanna">
                 </div>
                 <div class="about-content" style="direction: ltr;">
-                    <h2 style="font-size: 1.75rem;">2BHK Apartment <span>| 750 sq.ft | King + Queen Beds</span></h2>
+                    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                        <h2 style="font-size: 1.75rem; margin: 0;">2BHK Apartment <span>| 750 sq.ft | King + Queen Beds</span></h2>
+                        <span class="room-badge">7 Units</span>
+                    </div>
                     <p style="font-size: 1.25rem; color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem;">Starting ₹3000/night <span style="font-size: 0.9rem; font-weight: 400;">(up to 53% off on long stays)</span></p>
                     <p>Ideal for families needing space and privacy. Master bedroom with King bed, second bedroom with Queen bed, both with attached bathrooms. Full kitchen with stove, induction, fridge, kettle & complete cooking utensils.</p>
                     <p><strong>Perfect For:</strong> Families, groups attending functions, temple pilgrims, hospital visitors, and extended family visits.</p>
@@ -346,7 +352,117 @@
         </div>
     </section>
 
+
+    <!-- Amenities & Facilities Section -->
+    <section class="section bg-off-white">
+        <div class="container">
+            <div class="section-header">
+                <h2>Amenities & <span class="text-accent">Facilities</span></h2>
+                <p>Everything you need for a comfortable stay</p>
+            </div>
+            <div class="nearby-categories">
+                <!-- Basic Facilities -->
+                <div class="nearby-category">
+                    <div class="category-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        <h3>Basic Facilities</h3>
+                    </div>
+                    <div class="category-items">
+                        <div class="nearby-item"><span class="item-name">Free WiFi</span></div>
+                        <div class="nearby-item"><span class="item-name">Air Conditioning</span></div>
+                        <div class="nearby-item"><span class="item-name">Power Backup</span></div>
+                        <div class="nearby-item"><span class="item-name">Free Parking</span></div>
+                        <div class="nearby-item"><span class="item-name">Lift / Elevator</span></div>
+                        <div class="nearby-item"><span class="item-name">Daily Housekeeping</span></div>
+                        <div class="nearby-item"><span class="item-name">Laundry (Washing Machine & Iron)</span></div>
+                    </div>
+                </div>
+
+                <!-- In-Room Amenities -->
+                <div class="nearby-category">
+                    <div class="category-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                        <h3>In-Room Amenities</h3>
+                    </div>
+                    <div class="category-items">
+                        <div class="nearby-item"><span class="item-name">Smart TV</span></div>
+                        <div class="nearby-item"><span class="item-name">Refrigerator</span></div>
+                        <div class="nearby-item"><span class="item-name">Sofa & Chairs</span></div>
+                        <div class="nearby-item"><span class="item-name">Mineral Water (Complimentary)</span></div>
+                        <div class="nearby-item"><span class="item-name">Solar Water Heater</span></div>
+                        <div class="nearby-item"><span class="item-name">Toiletries Provided</span></div>
+                        <div class="nearby-item"><span class="item-name">Umbrellas Available</span></div>
+                    </div>
+                </div>
+
+                <!-- Kitchen Facilities -->
+                <div class="nearby-category">
+                    <div class="category-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        <h3>Kitchen Facilities</h3>
+                    </div>
+                    <div class="category-items">
+                        <div class="nearby-item"><span class="item-name">Gas Stove & Induction</span></div>
+                        <div class="nearby-item"><span class="item-name">Cooking Pots & Utensils</span></div>
+                        <div class="nearby-item"><span class="item-name">Electric Kettle</span></div>
+                        <div class="nearby-item"><span class="item-name">Pressure Cooker</span></div>
+                        <div class="nearby-item"><span class="item-name">Refrigerator</span></div>
+                        <div class="nearby-item"><span class="item-name">Complete Cutlery Set</span></div>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="nearby-category">
+                    <div class="category-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <h3>Services</h3>
+                    </div>
+                    <div class="category-items">
+                        <div class="nearby-item"><span class="item-name">Room Service</span></div>
+                        <div class="nearby-item"><span class="item-name">Luggage Assistance</span></div>
+                        <div class="nearby-item"><span class="item-name">Doctor on Call</span></div>
+                        <div class="nearby-item"><span class="item-name">First Aid Kit</span></div>
+                        <div class="nearby-item"><span class="item-name">Multilingual Staff</span></div>
+                        <div class="nearby-item"><span class="item-name" style="font-size: 0.85rem;">(English, Malayalam, Hindi, Tamil, Arabic)</span></div>
+                    </div>
+                </div>
+
+                <!-- Food & Drinks -->
+                <div class="nearby-category">
+                    <div class="category-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg>
+                        <h3>Food & Drinks</h3>
+                    </div>
+                    <div class="category-items">
+                        <div class="nearby-item"><span class="item-name">Veg & Non-Veg Restaurant Menus</span></div>
+                        <div class="nearby-item"><span class="item-name">Food Delivery Available</span></div>
+                        <div class="nearby-item"><span class="item-name">Swiggy & Zomato</span></div>
+                        <div class="nearby-item"><span class="item-name">Local Restaurant Delivery</span></div>
+                        <div class="nearby-item"><span class="item-name">Outside Food Allowed</span></div>
+                    </div>
+                </div>
+
+                <!-- Safety & Common Areas -->
+                <div class="nearby-category">
+                    <div class="category-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <h3>Safety & Common Areas</h3>
+                    </div>
+                    <div class="category-items">
+                        <div class="nearby-item"><span class="item-name">CCTV Surveillance</span></div>
+                        <div class="nearby-item"><span class="item-name">Fire Extinguishers</span></div>
+                        <div class="nearby-item"><span class="item-name">24/7 Security</span></div>
+                        <div class="nearby-item"><span class="item-name">Reception Area</span></div>
+                        <div class="nearby-item"><span class="item-name">Rooftop Swimming Pool</span></div>
+                        <div class="nearby-item"><span class="item-name">Wheelchair Accessible</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Policies Section -->
+
     <section class="section bg-off-white">
         <div class="container">
             <div class="section-header">
