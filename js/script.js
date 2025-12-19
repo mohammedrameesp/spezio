@@ -27,34 +27,45 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(pageTransition);
 
     // ==========================================================================
-    // Header Scroll Effect
+    // Header Scroll Effect (optimized to prevent forced reflow)
     // ==========================================================================
     const header = document.getElementById('header');
+    let ticking = false;
+    let lastScrollY = 0;
+    let cachedDocHeight = 0;
+
+    // Cache document height on load and resize
+    function updateDocHeight() {
+        cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+    }
+    updateDocHeight();
+    window.addEventListener('resize', updateDocHeight);
 
     function handleScroll() {
-        // Header effect
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Scroll Progress Bar
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        scrollProgress.style.width = scrollPercent + '%';
-
-        // Scroll to Top Button visibility
-        if (scrollTop > 300) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
+        lastScrollY = window.scrollY;
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                if (lastScrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                if (cachedDocHeight > 0) {
+                    scrollProgress.style.width = (lastScrollY / cachedDocHeight) * 100 + '%';
+                }
+                if (lastScrollY > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     }
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on load
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
     // Scroll to Top Button click handler
     scrollTopBtn.addEventListener('click', function() {
