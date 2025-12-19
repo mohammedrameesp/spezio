@@ -288,11 +288,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 data[key] = typeof value === 'string' ? value.trim() : value;
             });
 
-            console.log('Form data:', data);  // Debug
-
             // Basic validation
             if (!data.name || !data.phone || !data.message) {
-                console.log('Validation failed', {name: data.name, phone: data.phone, message: data.message});
                 showPopup('Please fill in all required fields.', 'error');
                 return;
             }
