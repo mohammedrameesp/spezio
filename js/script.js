@@ -218,10 +218,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get form data
             const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = typeof value === 'string' ? value.trim() : value;
+            });
+
+            console.log('Form data:', data);  // Debug
 
             // Basic validation
             if (!data.name || !data.phone || !data.message) {
+                console.log('Validation failed', {name: data.name, phone: data.phone, message: data.message});
                 alert('Please fill in all required fields.');
                 return;
             }
