@@ -77,6 +77,10 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
+        <!-- Preload critical resources -->
+    <link rel="preload" as="image" href="images/hero/spezio-index-hero.webp" fetchpriority="high">
+    <link rel="preload" as="video" href="images/video/Spezio-1.mp4">
+
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="images/logo/icon.webp">
     <link rel="apple-touch-icon" href="images/logo/icon.webp">
@@ -257,7 +261,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline poster="images/hero/spezio-index-hero.webp" width="1920" height="1080">
             <source src="images/video/Spezio-1.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -283,7 +287,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image featured-image">
-                    <img src="images/hero/spezio-about-hero.webp" alt="Spezio Apartments Front View">
+                    <img src="images/hero/spezio-about-hero.webp" alt="Spezio Apartments Front View" fetchpriority="high" loading="eager">
                 </div>
                 <div class="about-content">
                     <h2>Your <span>Home</span> Away From <span>Home</span></h2>
@@ -427,7 +431,7 @@
                 </div>
                 <div class="room-card">
                     <div class="room-image">
-                        <img src="images/rooms/spezio-2bhk-apartment-interior.webp" alt="2BHK Apartment Spezio Perinthalmanna">
+                        <img loading="lazy" src="images/rooms/spezio-2bhk-apartment-interior.webp" alt="2BHK Apartment Spezio Perinthalmanna">
                         <span class="room-badge">2BHK</span>
                     </div>
                     <div class="room-content">

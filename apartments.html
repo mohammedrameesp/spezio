@@ -66,6 +66,9 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
+        <!-- Preload critical resources -->
+    <link rel="preload" as="image" href="images/hero/spezio-apartments-hero.webp" fetchpriority="high">
+
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="images/logo/icon.webp">
     <link rel="apple-touch-icon" href="images/logo/icon.webp">
@@ -164,7 +167,7 @@
 
     <!-- Page Hero -->
     <section class="hero page-hero">
-        <div class="hero-bg" style="background-image: url('images/hero/spezio-apartments-hero.webp')"></div>
+        <div class="hero-bg"><img src="images/hero/spezio-apartments-hero.webp" alt="Spezio Apartments" fetchpriority="high" loading="eager"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 style="font-size: 2.5rem;">Furnished <span>Apartments</span> in Perinthalmanna</h1>
@@ -177,7 +180,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image">
-                    <img src="images/rooms/spezio-1bhk-apartment-preview.webp" alt="1BHK Furnished Apartment Spezio Perinthalmanna">
+                    <img loading="lazy" src="images/rooms/spezio-1bhk-apartment-preview.webp" alt="1BHK Furnished Apartment Spezio Perinthalmanna">
                 </div>
                 <div class="about-content">
                     <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
@@ -251,7 +254,7 @@
         <div class="container">
             <div class="about-grid" style="direction: rtl;">
                 <div class="about-image" style="direction: ltr;">
-                    <img src="images/rooms/spezio-2bhk-apartment-preview.webp" alt="2BHK Family Apartment Spezio Perinthalmanna">
+                    <img loading="lazy" src="images/rooms/spezio-2bhk-apartment-preview.webp" alt="2BHK Family Apartment Spezio Perinthalmanna">
                 </div>
                 <div class="about-content" style="direction: ltr;">
                     <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">

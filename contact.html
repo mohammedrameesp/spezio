@@ -66,6 +66,9 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
+        <!-- Preload critical resources -->
+    <link rel="preload" as="image" href="images/hero/spezio-contact-hero.webp" fetchpriority="high">
+
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="images/logo/icon.webp">
     <link rel="apple-touch-icon" href="images/logo/icon.webp">
@@ -159,7 +162,7 @@
 
     <!-- Page Hero -->
     <section class="hero page-hero">
-        <div class="hero-bg" style="background-image: url('images/hero/spezio-contact-hero.webp')"></div>
+        <div class="hero-bg"><img src="images/hero/spezio-contact-hero.webp" alt="Spezio Apartments" fetchpriority="high" loading="eager"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Contact <span>Us</span></h1>
