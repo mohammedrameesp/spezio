@@ -878,6 +878,7 @@ p {
     transform: scale(1.1);
 }
 
+.feature-card h3,
 .feature-card h4 {
     color: var(--color-white);
     margin-bottom: var(--spacing-xs);
