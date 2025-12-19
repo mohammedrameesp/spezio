@@ -2880,8 +2880,10 @@ img:not([loading="lazy"]) {
     background: var(--color-primary);
 }
 
+.feature-card-white h3,
 .feature-card-white h4 {
     color: var(--color-primary);
+    font-size: 1.25rem;
 }
 
 .feature-card-white p {
