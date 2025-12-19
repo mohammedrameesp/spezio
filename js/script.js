@@ -210,47 +210,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
 
             // Get form data
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData.entries());
 
             // Basic validation
-            if (!data.name || !data.email || !data.message) {
+            if (!data.name || !data.phone || !data.message) {
                 alert('Please fill in all required fields.');
                 return;
             }
 
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                alert('Please enter a valid email address.');
-                return;
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('api/contact.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(result.message);
+                    contactForm.reset();
+                } else {
+                    alert(result.message || 'Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Form error:', error);
+                alert('Connection error. Please call us at +91 75102 03232');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
             }
-
-            // Create WhatsApp message
-            let whatsappMessage = `Hello Spezio Apartments!\n\n`;
-            whatsappMessage += `Name: ${data.name}\n`;
-            whatsappMessage += `Email: ${data.email}\n`;
-            if (data.phone) whatsappMessage += `Phone: ${data.phone}\n`;
-            if (data.roomType) whatsappMessage += `Room Type: ${data.roomType}\n`;
-            if (data.checkin) whatsappMessage += `Check-in: ${data.checkin}\n`;
-            if (data.checkout) whatsappMessage += `Check-out: ${data.checkout}\n`;
-            whatsappMessage += `\nMessage:\n${data.message}`;
-
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-
-            // Open WhatsApp with pre-filled message
-            window.open(`https://wa.me/919876543210?text=${encodedMessage}`, '_blank');
-
-            // Show success message
-            alert('Thank you for your message! You will be redirected to WhatsApp to complete your inquiry.');
-
-            // Reset form
-            contactForm.reset();
         });
 
         // Set minimum date for check-in to today
