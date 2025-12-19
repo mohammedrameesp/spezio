@@ -522,4 +522,38 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(update);
     }
 
+    // ==========================================================================
+    // Book Now Button Click Tracking (GA4 + Facebook Pixel)
+    // ==========================================================================
+    const bookingLinks = document.querySelectorAll('a[href*="bookingjini"]');
+
+    bookingLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Get button location context
+            const pageName = document.title.split('|')[0].trim();
+            const buttonLocation = this.closest('nav') ? 'header' :
+                                   this.closest('footer') ? 'footer' : 'content';
+
+            // Track in Google Analytics 4
+            if (typeof gtag === 'function') {
+                gtag('event', 'book_now_click', {
+                    'event_category': 'engagement',
+                    'event_label': buttonLocation,
+                    'page_title': pageName,
+                    'page_location': window.location.href,
+                    'button_location': buttonLocation
+                });
+            }
+
+            // Track in Facebook Pixel
+            if (typeof fbq === 'function') {
+                fbq('track', 'InitiateCheckout', {
+                    content_name: 'Book Now Button',
+                    content_category: buttonLocation,
+                    source_page: pageName
+                });
+            }
+        });
+    });
+
 });
