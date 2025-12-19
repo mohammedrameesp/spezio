@@ -878,18 +878,14 @@ p {
     transform: scale(1.1);
 }
 
-.feature-card h4 {
-    color: var(--color-white);
-    margin-bottom: var(--spacing-xs);
-}
-
-.section-parallax-dark .feature-card h3 {
+.section-parallax-dark .feature-card h3,
+.section-parallax-dark .feature-card h4 {
     color: var(--color-white);
     margin-bottom: var(--spacing-xs);
     font-size: 1.5rem;
 }
 
-.feature-card p {
+.section-parallax-dark .feature-card p {
     color: rgba(255,255,255,0.7);
     font-size: 0.95rem;
 }
