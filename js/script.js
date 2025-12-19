@@ -310,6 +310,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (result.success) {
                     showPopup(result.message, 'success');
                     contactForm.reset();
+
+                    // Track successful form submission in GA4
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'contact_form_submit', {
+                            'event_category': 'lead',
+                            'event_label': 'Contact Form',
+                            'page_location': window.location.href
+                        });
+                    }
+
+                    // Track in Facebook Pixel as Lead
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Lead', {
+                            content_name: 'Contact Form',
+                            content_category: 'inquiry'
+                        });
+                    }
                 } else {
                     showPopup(result.message || 'Something went wrong. Please try again.', 'error');
                 }
@@ -549,6 +566,69 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof fbq === 'function') {
                 fbq('track', 'InitiateCheckout', {
                     content_name: 'Book Now Button',
+                    content_category: buttonLocation,
+                    source_page: pageName
+                });
+            }
+        });
+    });
+
+    // ==========================================================================
+    // Phone Call Click Tracking (GA4 + Facebook Pixel)
+    // ==========================================================================
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+
+    phoneLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const phoneNumber = this.getAttribute('href').replace('tel:', '');
+            const pageName = document.title.split('|')[0].trim();
+
+            // Track in Google Analytics 4
+            if (typeof gtag === 'function') {
+                gtag('event', 'phone_call_click', {
+                    'event_category': 'contact',
+                    'event_label': phoneNumber,
+                    'page_title': pageName,
+                    'page_location': window.location.href
+                });
+            }
+
+            // Track in Facebook Pixel
+            if (typeof fbq === 'function') {
+                fbq('track', 'Contact', {
+                    content_name: 'Phone Call',
+                    content_category: 'phone',
+                    phone_number: phoneNumber,
+                    source_page: pageName
+                });
+            }
+        });
+    });
+
+    // ==========================================================================
+    // WhatsApp Click Tracking (GA4 + Facebook Pixel)
+    // ==========================================================================
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const pageName = document.title.split('|')[0].trim();
+            const buttonLocation = this.classList.contains('whatsapp-btn') ? 'floating' : 'content';
+
+            // Track in Google Analytics 4
+            if (typeof gtag === 'function') {
+                gtag('event', 'whatsapp_click', {
+                    'event_category': 'contact',
+                    'event_label': buttonLocation,
+                    'page_title': pageName,
+                    'page_location': window.location.href
+                });
+            }
+
+            // Track in Facebook Pixel
+            if (typeof fbq === 'function') {
+                fbq('track', 'Contact', {
+                    content_name: 'WhatsApp',
                     content_category: buttonLocation,
                     source_page: pageName
                 });
