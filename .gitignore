@@ -1,0 +1,21 @@
+# Logs
+logs/*.log
+logs/rate_limits/
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Claude Code settings (local)
+.claude/
+
+# Environment specific
+.env
+.env.local
+
+# Sensitive config (if any)
+api/config.local.php

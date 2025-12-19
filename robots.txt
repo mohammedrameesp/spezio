@@ -1,0 +1,15 @@
+# Robots.txt for Spezio Apartments
+# https://spezioapartments.com/
+
+User-agent: *
+Allow: /
+
+# Disallow admin and API directories
+Disallow: /admin/
+Disallow: /api/
+Disallow: /logs/
+Disallow: /sql/
+Disallow: /booking
+
+# Sitemap location
+Sitemap: https://spezioapartments.com/sitemap.xml
