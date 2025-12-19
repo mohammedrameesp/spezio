@@ -175,7 +175,7 @@ p {
 
 .btn-primary {
     background-color: var(--color-secondary);
-    color: var(--color-white);
+    color: #1a1a1a;
     border-color: var(--color-secondary);
 }
 
@@ -295,7 +295,7 @@ p {
 
 .nav-link.btn-nav {
     background-color: var(--color-secondary);
-    color: var(--color-white);
+    color: #1a1a1a;
     padding: 0.6rem 1.25rem;
     border-radius: var(--radius-md);
     margin-left: 0.5rem;
@@ -311,7 +311,7 @@ p {
 
 .header.scrolled .nav-link.btn-nav {
     background-color: var(--color-secondary);
-    color: var(--color-white);
+    color: #1a1a1a;
 }
 
 .nav-toggle {
@@ -397,7 +397,7 @@ p {
 
     .nav-link.btn-nav {
         background-color: var(--color-secondary);
-        color: var(--color-white) !important;
+        color: #1a1a1a !important;
         text-align: center;
         border-radius: 8px;
         padding: 0.875rem;
@@ -2982,8 +2982,9 @@ img:not([loading="lazy"]) {
 }
 
 .cookie-consent-text a {
-    color: var(--color-secondary);
+    color: #e6b84d;
     text-decoration: underline;
+    font-weight: 600;
 }
 
 .cookie-consent-buttons {
@@ -3004,7 +3005,7 @@ img:not([loading="lazy"]) {
 
 .cookie-accept {
     background: var(--color-secondary);
-    color: white;
+    color: #1a1a1a;
 }
 
 .cookie-accept:hover {
