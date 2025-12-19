@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once 'db.php';
+require_once 'smtp-mailer.php';
 
 // Get POST data
 $data = json_decode(file_get_contents('php://input'), true);
@@ -102,35 +103,22 @@ try {
 }
 
 /**
- * Send email notification to admin
+ * Send email notification to admin using SMTP
  */
 function sendEmailNotification($name, $phone, $email, $message, $id) {
-    // Admin email - change this to your email
-    $adminEmail = 'spezioapartments@gmail.com';
+    require_once __DIR__ . '/email-config.php';
 
     $subject = "New Contact Form Message - Spezio Apartments (#$id)";
 
-    $body = "
-New message from Spezio Apartments website:
+    $body = "New message from Spezio Apartments website:\n\n";
+    $body .= "Name: $name\n";
+    $body .= "Phone: $phone\n";
+    $body .= "Email: $email\n\n";
+    $body .= "Message:\n$message\n\n";
+    $body .= "---\n";
+    $body .= "Received: " . date('Y-m-d H:i:s') . "\n";
+    $body .= "IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown');
 
-Name: $name
-Phone: $phone
-Email: $email
-
-Message:
-$message
-
----
-Received: " . date('Y-m-d H:i:s') . "
-IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown') . "
-    ";
-
-    $headers = [
-        'From: noreply@spezioapartments.com',
-        'Reply-To: ' . ($email ?: 'noreply@spezioapartments.com'),
-        'X-Mailer: PHP/' . phpversion()
-    ];
-
-    // Try to send email (may fail if mail server not configured)
-    return @mail($adminEmail, $subject, $body, implode("\r\n", $headers));
+    // Use SMTP mailer
+    return sendEmail(ADMIN_EMAIL, $subject, $body);
 }

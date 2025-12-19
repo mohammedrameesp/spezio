@@ -19,3 +19,5 @@ Thumbs.db
 
 # Sensitive config (if any)
 api/config.local.php
+
+api/email-config.php
