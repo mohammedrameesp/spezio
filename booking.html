@@ -440,5 +440,24 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="js/script.js"></script>
     <script src="js/booking.js"></script>
+
+    <script>
+    // Cookie Consent
+    function acceptCookies() {
+        localStorage.setItem("cookieConsent", "accepted");
+        document.getElementById("cookieConsent").classList.remove("show");
+    }
+    function declineCookies() {
+        localStorage.setItem("cookieConsent", "declined");
+        document.getElementById("cookieConsent").classList.remove("show");
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        if (!localStorage.getItem("cookieConsent")) {
+            setTimeout(function() {
+                document.getElementById("cookieConsent").classList.add("show");
+            }, 1500);
+        }
+    });
+    </script>
 </body>
 </html>
