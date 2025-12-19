@@ -1,3 +1,6 @@
+# Set default index file
+DirectoryIndex index.html index.php
+
 # Enable Rewrite Engine
 RewriteEngine On
 
