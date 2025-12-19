@@ -3046,3 +3046,104 @@ img:not([loading="lazy"]) {
         max-width: 150px;
     }
 }
+
+
+/* --------------------------------------------------------------------------
+   Custom Popup Modal
+   -------------------------------------------------------------------------- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-box {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transform: scale(0.8) translateY(-20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.popup-overlay.active .popup-box {
+    transform: scale(1) translateY(0);
+}
+
+.popup-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-icon.success {
+    background: #d4edda;
+    color: #28a745;
+}
+
+.popup-icon.error {
+    background: #f8d7da;
+    color: #dc3545;
+}
+
+.popup-icon.info {
+    background: #e7f3ff;
+    color: #0066cc;
+}
+
+.popup-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.popup-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.popup-message {
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.popup-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.popup-btn:hover {
+    background: var(--color-primary-dark);
+}

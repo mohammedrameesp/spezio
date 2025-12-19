@@ -6,6 +6,71 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ==========================================================================
+    // Custom Popup Modal (replaces browser alerts)
+    // ==========================================================================
+
+    // Create popup HTML
+    const popupHTML = `
+        <div class="popup-overlay" id="customPopup">
+            <div class="popup-box">
+                <div class="popup-icon" id="popupIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h3 class="popup-title" id="popupTitle">Success</h3>
+                <p class="popup-message" id="popupMessage"></p>
+                <button class="popup-btn" id="popupBtn">OK</button>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', popupHTML);
+
+    const popup = document.getElementById('customPopup');
+    const popupIcon = document.getElementById('popupIcon');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupMessage = document.getElementById('popupMessage');
+    const popupBtn = document.getElementById('popupBtn');
+
+    function showPopup(message, type = 'info') {
+        const icons = {
+            success: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+            error: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>',
+            info: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>'
+        };
+
+        const titles = {
+            success: 'Success!',
+            error: 'Oops!',
+            info: 'Notice'
+        };
+
+        popupIcon.className = 'popup-icon ' + type;
+        popupIcon.innerHTML = icons[type] || icons.info;
+        popupTitle.textContent = titles[type] || titles.info;
+        popupMessage.textContent = message;
+        popup.classList.add('active');
+
+        // Close on button click
+        popupBtn.onclick = () => popup.classList.remove('active');
+
+        // Close on overlay click
+        popup.onclick = (e) => {
+            if (e.target === popup) popup.classList.remove('active');
+        };
+
+        // Close on Escape key
+        document.addEventListener('keydown', function escHandler(e) {
+            if (e.key === 'Escape') {
+                popup.classList.remove('active');
+                document.removeEventListener('keydown', escHandler);
+            }
+        });
+    }
+
+
+    // ==========================================================================
     // Create Dynamic Elements (Scroll Progress, Scroll Top Button)
     // ==========================================================================
 
@@ -228,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Basic validation
             if (!data.name || !data.phone || !data.message) {
                 console.log('Validation failed', {name: data.name, phone: data.phone, message: data.message});
-                alert('Please fill in all required fields.');
+                showPopup('Please fill in all required fields.', 'error');
                 return;
             }
 
@@ -246,14 +311,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
 
                 if (result.success) {
-                    alert(result.message);
+                    showPopup(result.message, 'success');
                     contactForm.reset();
                 } else {
-                    alert(result.message || 'Something went wrong. Please try again.');
+                    showPopup(result.message || 'Something went wrong. Please try again.', 'error');
                 }
             } catch (error) {
                 console.error('Form error:', error);
-                alert('Connection error. Please call us at +91 75102 03232');
+                showPopup('Connection error. Please call us at +91 75102 03232', 'error');
             } finally {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
