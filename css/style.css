@@ -882,7 +882,7 @@ p {
 .feature-card h4 {
     color: var(--color-white);
     margin-bottom: var(--spacing-xs);
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 .feature-card p {
